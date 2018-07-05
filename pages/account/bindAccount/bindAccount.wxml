@@ -1,0 +1,31 @@
+<import src="../../common/head.wxml"/>
+
+<view class="container">
+    <template is="head" data="{{title: '绑定账户',desc1:'谨慎操作',desc2:'1.绑定完成后此账户将删除',desc3:'2.绑定完成后此账户内容将转移到绑定账户',desc4:'3.绑定完成后可以用此微信登录绑定账户'}}"></template>
+    <view class="page-body">
+        <form catchsubmit="formSubmit" catchreset="formReset">
+            <view class="page-section">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">绑定账户</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input name="account" value="{{ form.account }}" class="weui-input" type="text" placeholder="请输入账户(用户名)" />
+                    </view>
+                </view>
+
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">绑定账户密码</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input name="password" value="{{ form.password }}" class="weui-input" type="text" placeholder="请输入密码" password="true" />
+                    </view>
+                </view>
+            </view>
+            <view class="btn-area">
+                <button class="page-body-button" type="primary" form-type="submit">提交</button>
+            </view>
+        </form>
+    </view>
+</view>

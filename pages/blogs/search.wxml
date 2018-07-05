@@ -1,0 +1,63 @@
+<import src="../template/common-list.wxml"></import>
+
+<view class="body">
+    <view class="showerror" style="display:{{showerror}}">
+        <image src="../../image/cry80.png" style="height:100rpx;width:100rpx"></image>
+        <view class="errortext">
+            暂时无法访问网络，下拉重试...
+        </view>
+    </view>
+
+    <view style="display:{{showallDisplay}}">
+        <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
+            <view class="search-panel">
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">当前选择</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="bindGenreChange" value="{{genreIndex}}" range="{{genreList}}">
+                        <view class="weui-input">{{genre}}</view>
+                        </picker>
+                    </view>
+                    </view>
+                </view>
+
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">标题</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" value="{{filterTitle}}" name="filterTitle" placeholder="搜索文章标题"/>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">用户</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" value="{{userName}}" name="userName" placeholder="用户名全称"/>
+                        </view>
+                    </view>
+                </view>
+                <button form-type="submit" type="primary">查找</button>
+            </view>
+        </form>
+
+        <view class="container">
+            <!-- 加载图文列表 -->
+            <view class="index-container">
+                <template is="tempCommonList" data="{{postsList}}" />
+
+                <view class="loadingmore" style="display:{{floatDisplay}}">
+                    <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
+                    
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

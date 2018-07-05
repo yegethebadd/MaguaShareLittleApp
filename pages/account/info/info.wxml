@@ -1,0 +1,37 @@
+<import src="../../common/head.wxml"/>
+<import src="../../common/foot.wxml"/>
+
+<view class="container">
+    <template is="head" data="{{title: '修改信息',desc1:'1.用户名可用于网页登录',desc2:'2.邮箱可用于找回网页登录密码',desc3:'3.个性签名将展示在个人主页中'}}"></template>
+
+    <view class="page-body">
+        <form catchsubmit="formSubmit" catchreset="formReset">
+            <view class="page-section">
+                <view class="weui-cells__title">用户名</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                        <input class="weui-input" name="nickName" value="{{form.nickName}}" bindinput="checkUserName" placeholder="用户名"></input>
+                        <label style="color:red">{{errorNickName}}</label>
+                    </view>
+                </view>
+
+                <view class="weui-cells__title">邮箱</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                        <input name="email" class="weui-input" value="{{form.email}}" placeholder="编辑邮箱"/>
+                    </view>
+                </view>
+
+                <view class="weui-cells__title">个性签名</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                        <input class="weui-input" name="signature" value="{{form.signature}}" placeholder="编辑个性签名"/>    
+                    </view>
+                </view>
+            </view>
+            <view class="btn-area">
+                <button class="page-body-button" type="primary" formType="submit">提交</button>
+            </view>
+        </form>
+    </view>
+</view>

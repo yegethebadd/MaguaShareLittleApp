@@ -1,0 +1,5 @@
+<template name="foot">
+    <navigator class="page-foot" open-type="switchTab" url="/page/compenent/index" hover-class="none">
+        <view>麻瓜分享</view>
+    </navigator>
+</template>

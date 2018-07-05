@@ -1,0 +1,72 @@
+<import src="../common/head.wxml"/>
+<import src="../common/foot.wxml"/>
+
+<view class="container">
+    <view class="page-body">
+        <view class="page-section">
+            <block wx:if="{{hasLogin === true}}">
+                <view class="userinfo">
+                    <block>
+                        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+                        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+                        <text class="userinfo-signature">{{userInfo.signature}}</text>
+                    </block>
+                </view>
+                <view class="index-bd" style="align-item:auto">
+                    <view class="kind-list" style="padding: 10rpx;">
+                        <view class="kind-list-item">
+                            <view class="kind-list-item-bd kind-list-item-bd-show">
+                                <view class="navigator-box navigator-box-show">
+                                    <navigator class="navigator" url="info/info">
+                                        <view class="navigator-text">修改个人资料</view>
+                                        <view class="navigator-arrow"></view>
+                                    </navigator>
+                                    <navigator class="navigator" url="resetPassword/resetPassword">
+                                        <view class="navigator-text">重置登录密码</view>
+                                        <view class="navigator-arrow"></view>
+                                    </navigator>
+                                    <navigator class="navigator" url="bindAccount/bindAccount">
+                                        <view class="navigator-text">绑定已有账号</view>
+                                        <view class="navigator-arrow"></view>
+                                    </navigator>
+
+                                <view style="height:150rpx;"></view>
+                                <navigator class="navigator" url="feedback/feedback">
+                                    <view class="navigator-text">意见反馈</view>
+                                    <view class="navigator-arrow"></view>
+                                </navigator>
+                                <navigator class="navigator" url="about/about">
+                                    <view class="navigator-text">关于</view>
+                                    <view class="navigator-arrow"></view>
+                                </navigator>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <button class="page-body-button" type="primary" bindtap="login">重新登录</button>
+                <button class="page-body-button" type="warn" bindtap="logout">注销登录</button>
+            </block>
+            <block wx:if="{{hasLogin === false}}">
+                <view class="userinfo">
+                    <block>
+                        <text class="page-body-text">未登录</text>
+                        <text class="page-body-text">点击绿色按钮可登录账号</text>
+                        <text class="page-body-text">登录后可评论或者发表文章</text>
+                    </block>
+                </view>
+
+                <view style="height:150rpx;"></view>
+                <navigator class="navigator" url="feedback/feedback">
+                    <view class="navigator-text">意见反馈</view>
+                    <view class="navigator-arrow"></view>
+                </navigator>
+                <navigator class="navigator" url="about/about">
+                    <view class="navigator-text">关于</view>
+                    <view class="navigator-arrow"></view>
+                </navigator>
+                <button class="page-body-button" type="primary" open-type="getUserInfo" bindtap="login">微信登录</button>
+            </block>
+        </view>
+    </view>
+</view>

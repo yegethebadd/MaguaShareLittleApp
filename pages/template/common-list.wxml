@@ -1,0 +1,29 @@
+<template name="tempCommonList">
+
+  <view class="common-list">
+    <block wx:key="id" wx:for="{{postsList}}">
+      <view class="list-item has-img" index="{{index}}" id="{{item.id}}" bindtap="redirectDetail">
+        <view class="content-title">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="content-sort">
+            <label>文章标签:</label>
+            <view style="display:inline-block" data-genre="{{item.genre}}" catchtap="searchGenre">
+              <text>{{item.genre}}</text>
+            </view>
+            <label>创建人:</label>
+            <view style="display:inline-block" data-user="{{item.createdUser}}" catchtap="searchUser">
+              <text>{{item.createdUser}}</text>
+            </view>
+        </view>
+        <view class="content-time">
+           <label>创建时间:</label>
+            <text>{{item.createdDate}}</text>
+        </view>
+        <view class="content-outline">
+            <text>{{item.outline}}</text>
+        </view>
+      </view>
+    </block>
+  </view>  
+</template>

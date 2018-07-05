@@ -1,0 +1,50 @@
+<import src="../template/common-list.wxml"></import>
+<import src="../template/loading.wxml"></import>
+
+<view class="body">
+    <view class="index-header" style="display:{{displaySwiper}}">
+        <swiper class="index-swiper" indicator-dots="true" interval="10000" indicator-color="rgba(255,255,255,.2)" indicator-active-color="rgba(255,255,255,.7)">
+            <block wx:key="id" wx:for="{{postsShowSwiperList}}">
+                <swiper-item id="{{item.id}}" index="{{index}}" data-shorttitle="{{item.shortTitle}}" data-isBlogLink="{{item.isBlogLink}}" data-blogLinkId="{{item.blogLinkId}}" bindtap="redictAppDetail">
+                    <image mode="aspectFill" src="{{item.imageUrl}}" style="width:100%"></image>
+                    <view class="swiper-mask"></view>
+                    <view class="swiper-desc">
+                        <text>{{item.title}}</text>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="showerror" style="display:{{showerror}}">
+        <image src="../../image/cry80.png" style="height:100rpx;width:100rpx"></image>
+        <view class="errortext">
+            暂时无法访问网络，下拉重试...
+        </view>
+    </view>
+
+    <view style="display:{{showallDisplay}}">
+        <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
+            <view class="search-panel">
+                <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索文章..." bindconfirm="formSubmit"></input>
+                <button class="search-button" form-type="submit" size="mini" plain="true">
+                    <icon type="search" color="#959595" size="12"/>
+                </button>
+            </view>
+        </form>
+
+        <view class="container">
+            <!-- 加载图文列表 -->
+            <view class="index-container">
+                <template is="tempCommonList" data="{{postsList}}" />
+                <view style="display:{{isLoading?'block':'none'}}">
+                    <template is="tempLoading"></template>
+                </view>
+
+                <view class="loadingmore" style="display:{{floatDisplay}}">
+                    <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

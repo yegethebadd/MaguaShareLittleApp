@@ -1,0 +1,119 @@
+<import src="../../../wxParse/wxParse.wxml"></import>
+<import src="../../template/loading.wxml"></import>
+<import src="../../template/modal-view/modal-view.wxml"></import>
+
+<view class="body">
+    <view class="container">
+        <view class="content-aritcle-detail" style="display:{{display}}">
+            <view class="entry-title">
+                {{detail.title}}
+            </view>
+            <view style="font-size:24rpx;color:#959595">
+                <label>标签:</label>
+                <text>{{detail.genre}}</text>
+            </view>
+            <view style="font-size:24rpx;color:#959595">
+                <label>创建人:</label>
+                <text>{{detail.createdUser}}</text>
+            </view>
+            <view class="entry-date">
+                <label>创建时间:</label>
+                <text>{{detail.createdDate}}</text>
+            </view>
+            <view class="entry-summary">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+            </view>
+        </view>
+        <view class="relatedPost" style="display:{{display}}">
+            <view class="relatedTitle">
+                作者相关
+            </view>
+            <view class="entry-gap-like"></view>
+            <view class="user-menu">
+                <view class="um-header">
+                    <view class="um-gravatar">
+                        <image bindtap="imgView" data-src="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}"></image>
+                    </view>
+                    <view class="um-header-info">
+                        <text class="userinfo-nickname">用户名：{{userInfo.nickName}}</text>
+                    </view>
+                </view>
+                <view class="um-about-me">
+                    <text class="userinfo-signature">{{userInfo.signature}}</text>
+                </view>
+            </view>
+            <view class="relatedText">
+                <block wx:key="id" wx:for="{{postList}}">
+                    <navigator url="../detail/detail?id={{item.id}}" open-type="redirect" hover-class="relatedNavigator">{{index+1}}.{{item.title}}</navigator>
+                </block>
+            </view>
+        </view>
+
+        <view style="display:{{display}};margin-bottom:120rpx">
+            <view class="relatedTitle" id="relatedTitle">
+                评论交流 {{enableCommont?'(点击评论内容可以回复)':''}}
+            </view>
+            <view class="entry-gap-like"></view>
+            <view class="commonheader">
+                {{commentCount}}
+            </view>
+            <block wx:key="id" wx:for="{{commentsList}}">
+                <view class="comment">
+                    <view class="comment-user">
+                        <image src="{{item.author_url}}" class="gravatarImg"></image>
+                        <view style="display:flex;flex-direction:row;justify-content:space-between;width:100%">
+                            <view style="font-weight:bold;" bindtap="reply" data-id="{{item.id}}" data-name="{{item.author_name}}"
+                                data-userid="{{item.userId}}" data-commentdate="{{item.date}}" data-parentid="{{item.id}}">
+                                {{item.author_name}}
+                            </view>
+                            <view bindtap="reply" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userId}}" 
+                                data-commentdate="{{item.date}}" data-parentid="{{item.id}}">
+                                {{item.date}}
+                            </view>
+                        </view>
+                    </view>
+                    <view class="comment-summary" bindtap="reply" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userId}}"
+                        data-parentid="{{item.id}}" data-commentdate="{{item.date}}">
+                        {{item.content}}
+                    </view>
+                    <!-- 一级回复-->
+                    <view wx:for="{{item.child}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1">
+                        <view class="reply-user" bindtap="reply" data-id="{{item1.id}}" data-name="{{item1.author_name}}" data-userid="{{item1.userId}}"
+                            data-commentdate="{{item1.date}}" data-parentid="{{item.id}}">
+                            {{item1.author_name}} 回复{{item1.atUserName}}:{{item1.content}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+
+            <view style="display:{{display}}">
+                <view style="display:{{isLoading?'block':'none'}}">
+                    <template is="tempLoading"></template>
+                </view>
+                <view style="display:{{isLastPage?'block':'none'}}">
+                    <view class="no-more">---无更多评论---</view>
+                </view>
+            </view>
+        </view>
+
+        <!--评论区-->
+        <view style="display:{{enableComment?'block':'none'}}">
+            <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
+            <view style="display:{{display}}">
+                <view class="comment-fixed">
+                    <form catchsubmit="formSubmit" report-submit="true">
+                        <view class="comment-respond">
+                            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+                            <view class="comment-box">
+                                <image src="../../../image/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
+                                <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onReplyFocus" />
+                                <button class="comment-button touch-active" open-type="getUserInfo" formType="submit">发送</button>
+                            </view>
+                        </view>
+                    </form>
+                </view>
+            </view>
+        </view>
+        <!-- 评论区 -->
+    </view>
+</view>

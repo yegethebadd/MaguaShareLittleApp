@@ -1,0 +1,13 @@
+
+<view class="container">
+    <view class="page-body">
+        <view class="picture">
+            <image bindtap="imgView" data-src="https://www.shyeweb.com/images/XCXM.jpg" src="https://www.shyeweb.com/images/XCXM.jpg"></image>
+        </view>
+        <view class="text">
+            <label>麻瓜分享 v0.2.0</label>
+            <label>世界那么有趣，麻瓜也来分享</label>
+            <label><view style="color:#21759b;" data-src="https://www.shyeweb.com" bindtap="gotowebpage">www.shyeweb.com</view></label>
+        </view>
+    </view>
+</view>

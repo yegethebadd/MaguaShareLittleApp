@@ -1,0 +1,11 @@
+<template name="head">
+    <view class="page-head">
+        <view class="page-head-title">{{title}}</view>
+        <view class="page-head-line"></view>
+        <view wx:if="{{desc1}}" class="page-head-desc">{{desc1}}</view>
+        <view wx:if="{{desc2}}" class="page-head-desc">{{desc2}}</view>
+        <view wx:if="{{desc3}}" class="page-head-desc">{{desc3}}</view>
+        <view wx:if="{{desc4}}" class="page-head-desc">{{desc4}}</view>
+        <view wx:if="{{desc5}}" class="page-head-desc">{{desc5}}</view>
+    </view>
+</template>

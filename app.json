@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/account/account",
+    "pages/account/info/info",
+    "pages/account/bindAccount/bindAccount",
+    "pages/account/resetPassword/resetPassword",
+    "pages/blogs/detail/detail",
+    "pages/webpage/webpage",
+    "pages/blogs/search",
+    "pages/blogs/htmlpage/htmlpage",
+    "pages/account/about/about",
+    "pages/account/feedback/feedback",
+    "pages/blogs/create/create"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#e0f1ff",
+    "navigationBarTitleText": "麻瓜分享",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#aeadb3",
+    "selectedColor": "#19dec1",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/home_before.png",
+        "selectedIconPath": "image/home_after.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/blogs/create/create",
+        "iconPath": "image/blog_create_before.png",
+        "selectedIconPath": "image/blog_create_after.png",
+        "text": "创建"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "iconPath": "image/user_before.png",
+        "selectedIconPath": "image/user_after.png",
+        "text": "帐户"
+      }
+    ]
+  }
+}
