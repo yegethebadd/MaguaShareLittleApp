@@ -1,5 +1,4 @@
 @import "../../../wxParse/wxParse.wxss";
-@import "../../template/modal-view/modal-view.wxss";
 @import "../../index/index.wxss";
 
 .body{

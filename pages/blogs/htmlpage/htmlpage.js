@@ -65,22 +65,18 @@ Page({
             });
         }
         else{
-            // console.log('')
         }
     },
     onShareAppMessage: function (res) {
         this.ShowHideMenu();
-        console.log(res);
         return {
             title: '分享"' + config.getWebsiteName + '"的文章：' + this.data.detail.title,
             path: '/pages/blogs/htmlpage/htmlpage?shorttitle=' + this.data.shorttitle,
             imageUrl: this.data.detail.post_thumbnail_image,
             success: function (res) {
                 // 转发成功
-                console.log(res);
             },
             fail: function (res) {
-                console.log(res);
                 // 转发失败
             }
         }
@@ -158,7 +154,6 @@ Page({
     wxParseTagATap: function (e) {
         var self = this;
         var href = e.currentTarget.dataset.src;
-        console.log(href);
         self.copyLink(href);
     },
     //图片点击事件
@@ -200,7 +195,6 @@ Page({
 
             }) 
             .catch(response => {
-                console.log(response.data.message);
                 
             }).finally(function () {
 
@@ -244,7 +238,6 @@ Page({
     },
     onReplyBlur: function (e) {
         var self = this;
-        console.log('onReplyBlur', isFocusing);
         if (!isFocusing) {
             {
                 const text = e.detail.value.trim();
@@ -259,12 +252,10 @@ Page({
 
             }
         }
-        console.log(isFocusing);
     },
     onReplyFocus: function (e) {
         var self = this;
         isFocusing = false;
-        console.log('onRepleyFocus', isFocusing);
         if (!self.data.focus) {
             self.setData({ focus: true })
         }
@@ -346,7 +337,6 @@ Page({
                             })                            
                         }, 900); 
                     }).catch(response => {
-                        console.log(response)
                         self.setData({
                             'dialog.hidden': false,
                             'dialog.title': '提示',
@@ -362,12 +352,9 @@ Page({
         // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
         wx.getSetting({
             success: function success(res) {
-                console.log(res.authSetting);
                 var authSetting = res.authSetting;
                 if (util.isEmptyObject(authSetting)) {
-                    console.log('第一次授权');
                 } else {
-                    console.log('不是第一次授权', authSetting);
                     // 没有授权的提醒
                     if (authSetting['scope.userInfo'] === false) {
                         wx.showModal({
@@ -379,10 +366,8 @@ Page({
                             confirmText: '设置权限',
                             success: function (res) {
                                 if (res.confirm) {
-                                    console.log('用户点击确定')
                                     wx.openSetting({
                                         success: function success(res) {
-                                            console.log('打开设置', res.authSetting);
                                             var scopeUserInfo = res.authSetting["scope.userInfo"];
                                             if (scopeUserInfo) {
                                                 auth.getUsreInfo();

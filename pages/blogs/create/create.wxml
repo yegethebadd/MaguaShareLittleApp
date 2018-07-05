@@ -1,6 +1,5 @@
 <import src="../../../wxParse/wxParse.wxml"></import>
 <import src="../../template/loading.wxml"></import>
-<import src="../../template/modal-view/modal-view.wxml"></import>
 
 <view class="body">
     <view class="container">
