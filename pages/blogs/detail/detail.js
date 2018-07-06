@@ -323,7 +323,7 @@ Page({
     
                             }
                         )
-                        self.onReachBottom();
+                        // self.onReachBottom();
                         //self.fetchCommentData();
                         setTimeout(function () {                           
                             wx.showToast({
