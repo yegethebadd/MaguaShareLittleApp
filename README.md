@@ -8,5 +8,6 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 这是一家可以畅所欲言的网站，我们秉承着无私奉献的理念，将自己的经验或者知识分享出来，供给志同道合的朋友们参考，同时也希望大家广开言路，共同营造一个和谐轻松的网站氛围。
 
 网页版
+https://www.shyeweb.com
 
 ![麻瓜分享](https://that.shyeweb.com/images/XCXM.jpg)
