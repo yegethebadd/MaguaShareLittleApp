@@ -78,17 +78,11 @@ Page({
     gotowebpage: function() {
         var self = this;
         self.ShowHideMenu();
-        var minAppType = config.getMinAppType;
         var url = '';
-        if(minAppType = "0") {
-            url = "../../webpage/webpage";
-            wx.navigateTo({
-                url: url + "?url=" + self.data.link
-            })
-        }
-        else{
-            self.copyLink(self.data.link);
-        }
+        url = "../../webpage/webpage";
+        wx.navigateTo({
+            url: url + "?url=" + self.data.link
+        })
     },
     copyLink: function(url) {
         wx.setClipboardData({
@@ -149,7 +143,16 @@ Page({
     wxParseTagATap: function (e) {
         var self = this;
         var href = e.currentTarget.dataset.src;
-        self.copyLink(href);
+        var domain = config.getDomain;
+        if(href.indexOf(domain)==-1){
+            self.copyLink(href);
+        }
+        else{
+            self.setData({
+                link: href,
+            })
+            self.gotowebpage();
+        }
     },
     //图片点击事件
     imgView: function(event) {
@@ -312,6 +315,17 @@ Page({
     
                                 });
                             }
+                            if(res.data.success){
+                                setTimeout(function () {                           
+                                    wx.showToast({
+                                        title: '评论发布成功',
+                                        icon: 'success',
+                                        duration: 900,
+                                        success: function () {
+                                        }
+                                    })                            
+                                }, 900); 
+                            }
                         }
                     }).then(response =>{                    
                         //self.fetchCommentData(self.data); 
@@ -320,26 +334,15 @@ Page({
                                 page:1,
                                 commentsList:[],
                                 isLastPage:false
-    
                             }
                         )
                         // self.onReachBottom();
                         //self.fetchCommentData();
-                        setTimeout(function () {                           
-                            wx.showToast({
-                                title: '评论发布成功',
-                                icon: 'success',
-                                duration: 900,
-                                success: function () {
-                                }
-                            })                            
-                        }, 900); 
                     }).catch(response => {
                         self.setData({
                             'dialog.hidden': false,
                             'dialog.title': '提示',
                             'dialog.content': '评论失败,' + response
-    
                         });
                     })
                 wx.hideLoading();

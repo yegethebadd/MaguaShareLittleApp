@@ -1,0 +1,12 @@
+<view class="page-body">
+    <view class="page-section">
+        <view class="page-section-title">{{title}}</view>
+        <view class="textarea-wrp">
+            <textarea value="{{content}}" disabled="disabled" maxlength="-1" style="height:20em"/>
+        </view>
+        <view class="">
+            <button class="page-body-button" type="primary" bindtap="prevStory">上一条</button>
+            <button class="page-body-button" type="primary" bindtap="nextStory">下一条</button>
+        </view>
+    </view>
+</view>

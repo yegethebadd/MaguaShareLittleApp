@@ -77,5 +77,9 @@ module.exports = {
     postSuggestion: function() {
         var url = HOST_URI + 'account/PostSuggestion';
         return url;
+    },
+    getStory: function(id) {
+        var url = domain + '/api/story/index/' + id;
+        return url;
     }
 };

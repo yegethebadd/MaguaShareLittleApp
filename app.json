@@ -11,7 +11,7 @@
     "pages/blogs/htmlpage/htmlpage",
     "pages/account/about/about",
     "pages/account/feedback/feedback",
-    "pages/blogs/create/create"
+    "pages/story/story"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -32,10 +32,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/blogs/create/create",
-        "iconPath": "image/blog_create_before.png",
-        "selectedIconPath": "image/blog_create_after.png",
-        "text": "创建"
+        "pagePath": "pages/story/story",
+        "iconPath": "image/joy_before.png",
+        "selectedIconPath": "image/joy_after.png",
+        "text": "开心一刻"
       },
       {
         "pagePath": "pages/account/account",

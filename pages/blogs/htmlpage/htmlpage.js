@@ -84,17 +84,11 @@ Page({
     gotowebpage: function() {
         var self = this;
         self.ShowHideMenu();
-        var minAppType = config.getMinAppType;
         var url = '';
-        if(minAppType = "0") {
-            url = "../../webpage/webpage";
-            wx.navigateTo({
-                url: url + "?url=" + self.data.link
-            })
-        }
-        else{
-            self.copyLink(self.data.link);
-        }
+        url = "../../webpage/webpage";
+        wx.navigateTo({
+            url: url + "?url=" + self.data.link
+        })
     },
     copyLink: function(url) {
         wx.setClipboardData({
@@ -154,7 +148,16 @@ Page({
     wxParseTagATap: function (e) {
         var self = this;
         var href = e.currentTarget.dataset.src;
-        self.copyLink(href);
+        var domain = config.getDomain;
+        if(href.indexOf(domain)==-1){
+            self.copyLink(href);
+        }
+        else{
+            self.setData({
+                link: href,
+            })
+            self.gotowebpage();
+        }
     },
     //图片点击事件
     imgView: function(event) {
@@ -286,7 +289,7 @@ Page({
                 var myAuthorizeCode = wx.getStorageSync("myAuthorizeCode");
                 var fromUser = app.globalData.userInfo.nickName;
                 var data = {
-                    WebPageID: blogId,
+                    WebPagesID: blogId,
                     Comment: comment,
                     ParentID: parent,
                     AtUserID: atUserId
