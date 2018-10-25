@@ -48,5 +48,20 @@ Page({
                 })
             }
         })
-    }
+    },
+    onShareAppMessage: function() {
+        return {
+            title: '"' + config.getWebsiteName + '"-开心一刻',
+            path: '/pages/story/story',
+            success: function (res){
+                //分享成功
+            },
+            fail: function (res){
+                //分享失败
+            }
+        }
+    },
+    onPullDownRefresh: function() {
+        this.nextStory();
+    },
 })
