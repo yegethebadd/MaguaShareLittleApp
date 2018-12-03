@@ -213,9 +213,33 @@ function getymd(dateStr, type) {
 
 function addImgSrcPrefix(content){
     var domain = config.getDomain;
-    var str = content.replace(/src='(?:[^'\/]*)*([^']+)'/g, "src='" + config.getDomain + "/$1'");
-    str = str.replace(/src="(?:[^"\/]*)*([^"]+)"/g, 'src="' + config.getDomain + '/$1\"');
+    var str = content.replace(/src='(?:[^'\/]*)*([^']+)'/g,function(match,url){
+        var domain = config.getDomain;
+        var str;
+        if(checkIfUrlAbsolute(url))
+            str = "src='" + url + "'";
+        else
+            str = "src='" + domain + "/" + url + "'";
+        return str;
+    });
+
+    str = str.replace(/src="(?:[^"\/]*)*([^"]+)"/g, function(match,url){
+        var domain = config.getDomain;
+      var str;
+      if(checkIfUrlAbsolute(url))
+          str = 'src="' +url  + '"';
+      else
+          str = 'src="' + domain + "/" + url  + '"';
+      return str;
+    });
     return str;
+}
+
+function checkIfUrlAbsolute(url){
+    if (/^(?:[a-z]+:)?\/\//i.test(url))
+        return true;
+    else
+        return false;
 }
 
 module.exports = {
